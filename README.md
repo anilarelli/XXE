@@ -86,19 +86,19 @@ output:
 		 |--> This declaration introduces Document Type Definition, it declares the root element of the document named test
  		 |
 		 |
-		 |       |--> This is name of the document type or root element
-		 |       |
- 		 |       |       |--> (Entity declaration or Entity defination)  is used to define named entities which are place holders 
-  		 |       |       |     for the text that can be reused within the document it defines an entity named ent 
- 		 |       |       |
-		 |       |       |
+		 |          |--> This is name of the document type or root element
+		 |          |
+ 		 |          |       |--> (Entity declaration or Entity defination)  is used to define named entities which are place holders 
+  		 |          |       |     for the text that can be reused within the document it defines an entity named ent 
+ 		 |          |       |
+		 |          |       |
 	     <!DOCTYPE test [<!ENTITY ent SYSTEM "file:///etc/passwd"> ]>
  		  <userInfo>                               |
  		<firstName>John</firstName>                |
-                <lastName>&ent;</lastName>                 |--> external content such as url's or files
+                <lastName>&ent;</lastName>         |--> external content such as url's or files
 		 </userInfo>         |
 		                     |
-				     | --> This is Actual xml content
+				             | --> This is Actual xml content
 
 ```
 
